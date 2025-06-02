@@ -1,0 +1,16 @@
+services:
+  postgres:  # Novo serviço adicionado
+    container_name: postgres_dashboard
+    image: postgres:15-alpine
+    environment:
+      POSTGRES_USER: "user"
+      POSTGRES_PASSWORD: "dashboard"
+      POSTGRES_DB: "dashboard_finance"
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./init.sql:/docker-entrypoint-initdb.d/data.sql
+
+volumes:  # Seção nova para persistência de dados
+  postgres_data:
