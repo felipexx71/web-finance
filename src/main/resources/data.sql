@@ -2,12 +2,6 @@
 -- Criação do esquema financeiro
 CREATE SCHEMA IF NOT EXISTS finance;
 
-CREATE TABLE IF NOT EXISTS finance.notes (
-    id SERIAL PRIMARY KEY,
-    title VARCHAR(255),
-    description TEXT
-);
-
 -- Tabela de usuários
 CREATE TABLE IF NOT EXISTS finance.usuarios (
     id SERIAL PRIMARY KEY,

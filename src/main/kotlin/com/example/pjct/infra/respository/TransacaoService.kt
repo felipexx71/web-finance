@@ -37,4 +37,8 @@ class TransacaoService(
 
         return transacaoRepository.save(transacao)
     }
+
+    fun getAllTransaction() : List<Transacao> {
+        return transacaoRepository.findAll()
+    }
 }

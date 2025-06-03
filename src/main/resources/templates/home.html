@@ -7,20 +7,64 @@
 </head>
 <body>
 <header>
-    <h1>Bem-vindo à Página Inicial</h1>
-    <p>Explore o melhor da nossa aplicação!</p>
+    <h1>Bem-vindo à Minha Aplicação Financeira</h1>
+    <p>Gerencie suas finanças de forma simples e eficiente</p>
 </header>
 
 <main>
-    <section class="card">
-        <h2>Sobre Nós</h2>
-        <p>Somos uma equipe dedicada a entregar qualidade e inovação.</p>
-    </section>
 
-    <section class="card">
-        <h2>Contato</h2>
-        <p>Email: contato@minhaapp.com</p>
-        <p>Telefone: (11) 99999-9999</p>
+    <div class="carousel-container">
+        <div class="carousel">
+            <div class="carousel-images">
+                <img src="/images/banner1.png" alt="Banner 1">
+                <img src="/images/banner2.png" alt="Banner 2">
+                <img src="/images/banner3.png" alt="Banner 3">
+            </div>
+        </div>
+    </div>
+
+    <!-- Cards em container flex -->
+    <div class="cards-container">
+        <section class="card">
+            <h2>Sobre Nós</h2>
+            <p>Somos uma equipe dedicada a entregar soluções financeiras intuitivas e seguras.</p>
+        </section>
+
+        <section class="card">
+            <h2>Contato</h2>
+            <p>Email: felipenunex285@gmail.com</p>
+            <p>Telefone: (82) 99930-3313</p>
+            <p>Endereço: Rua São João, Arapiraca-AL</p>
+        </section>
+    </div>
+
+    <section class="cardTable" style="width: 100%">
+        <h2>Transações Recentes</h2>
+        <div style="overflow-x:auto;">
+            <table style="width:100%; border-collapse: collapse;" th:if="${transacoes}">
+                <thead>
+                <tr style="background-color: #00302b; color: white;">
+                    <th style="padding: 10px; border: 1px solid #ddd;">Data</th>
+                    <th style="padding: 10px; border: 1px solid #ddd;">Descrição</th>
+                    <th style="padding: 10px; border: 1px solid #ddd;">Tipo</th>
+                    <th style="padding: 10px; border: 1px solid #ddd;">Valor</th>
+                    <th style="padding: 10px; border: 1px solid #ddd;">Categoria</th>
+                    <th style="padding: 10px; border: 1px solid #ddd;">Conta</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="transacao : ${transacoes}">
+                    <td style="padding: 10px; border: 1px solid #ddd; text-align:center;" th:text="${#temporals.format(transacao.data, 'dd/MM/yyyy')}"></td>
+                    <td style="padding: 10px; border: 1px solid #ddd; text-align:center;" th:text="${transacao.descricao}"></td>
+                    <td style="padding: 10px; border: 1px solid #ddd; text-align:center;" th:text="${transacao.tipo}"></td>
+                    <td style="padding: 10px; border: 1px solid #ddd; text-align:center;" th:text="${#numbers.formatCurrency(transacao.valor)}"></td>
+                    <td style="padding: 10px; border: 1px solid #ddd; text-align:center;" th:text="${transacao.categoria.nome}"></td>
+                    <td style="padding: 10px; border: 1px solid #ddd; text-align:center;" th:text="${transacao.conta.nome}"></td>
+                </tr>
+                </tbody>
+            </table>
+            <p th:if="${transacoes == null or #lists.isEmpty(transacoes)}">Nenhuma transação encontrada.</p>
+        </div>
     </section>
 </main>
 
