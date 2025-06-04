@@ -6,7 +6,8 @@ import java.time.LocalDateTime
 @Entity
 @Table(name = "usuarios", schema = "finance")
 data class Usuario(
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     val id: Long = 0,
 
     val nome: String,
@@ -15,5 +16,8 @@ data class Usuario(
     val email: String,
 
     @Column(name = "data_criacao")
-    val dataCriacao: LocalDateTime = LocalDateTime.now()
+    val dataCriacao: LocalDateTime = LocalDateTime.now(),
+
+    @Version
+    val versao: Int = 0
 )

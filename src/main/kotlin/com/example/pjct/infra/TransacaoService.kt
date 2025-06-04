@@ -1,11 +1,11 @@
-package com.example.pjct.infra.respository
+package com.example.pjct.infra
 
 import com.example.pjct.domain.model.Transacao
+import com.example.pjct.infra.respository.CategoriaRepository
+import com.example.pjct.infra.respository.ContaRepository
+import com.example.pjct.infra.respository.TransacaoRepository
 import org.springframework.stereotype.Service
-import org.springframework.web.bind.annotation.PathVariable
-import org.springframework.web.bind.annotation.RequestParam
 import java.math.BigDecimal
-import java.time.LocalDate
 
 @Service
 class TransacaoService(
@@ -36,9 +36,5 @@ class TransacaoService(
         )
 
         return transacaoRepository.save(transacao)
-    }
-
-    fun getAllTransaction() : List<Transacao> {
-        return transacaoRepository.findAll()
     }
 }

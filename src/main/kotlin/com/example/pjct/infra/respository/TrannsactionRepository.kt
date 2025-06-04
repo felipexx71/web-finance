@@ -3,7 +3,6 @@ package com.example.pjct.infra.respository
 import com.example.pjct.domain.model.Transacao
 import com.example.pjct.domain.dto.GastoPorCategoriaDTO
 import com.example.pjct.domain.dto.ResumoFinancasDTO
-import com.example.pjct.domain.dto.TransacoesAllDTO
 import org.springframework.data.jpa.repository.JpaRepository
 import org.springframework.data.jpa.repository.Query
 import org.springframework.data.repository.query.Param
@@ -47,18 +46,4 @@ interface TransacaoRepository : JpaRepository<Transacao, Long> {
         @Param("startDate") startDate: LocalDate,
         @Param("endDate") endDate: LocalDate
     ): List<GastoPorCategoriaDTO>
-
-    @Query("""
-    SELECT new com.example.pjct.domain.dto.TransacoesAllDTO(
-        t.id,
-        t.descricao,
-        t.valor,
-        t.tipo,
-        t.data,
-        t.categoria.nome,
-        t.conta.nome
-    )
-    FROM Transacao t
-""")
-    fun getTransacoesAll(): List<TransacoesAllDTO>
 }

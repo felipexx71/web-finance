@@ -50,6 +50,7 @@
                     <th style="padding: 10px; border: 1px solid #ddd;">Valor</th>
                     <th style="padding: 10px; border: 1px solid #ddd;">Categoria</th>
                     <th style="padding: 10px; border: 1px solid #ddd;">Conta</th>
+                    <th style="padding: 10px; border: 1px solid #ddd;">Excluir</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -60,6 +61,17 @@
                     <td style="padding: 10px; border: 1px solid #ddd; text-align:center;" th:text="${#numbers.formatCurrency(transacao.valor)}"></td>
                     <td style="padding: 10px; border: 1px solid #ddd; text-align:center;" th:text="${transacao.categoria.nome}"></td>
                     <td style="padding: 10px; border: 1px solid #ddd; text-align:center;" th:text="${transacao.conta.nome}"></td>
+                    <td style="padding: 10px; border: 1px solid #ddd; text-align:center;" >
+                        <form th:action="@{/api/financeiro/deletar_transacao}" method="post"
+                              onsubmit="return confirm('Tem certeza que deseja excluir essa transação?');">
+
+                            <input type="hidden" name="idTransacao" th:value="${transacao.id}" />
+
+                            <button class="btn-excluir" type="submit">Excluir</button>
+                        </form>
+
+
+                    </td>
                 </tr>
                 </tbody>
             </table>
